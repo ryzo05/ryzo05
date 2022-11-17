@@ -1,0 +1,133 @@
+import random as rnd
+import time as t
+
+moves_dictionary = {
+    "r": "p",
+    "p": "s",
+    "s": "r"
+}
+
+moves = ["r","p","s"]
+ai_points = 0
+player_points = 0
+
+def ai_wins():
+  
+    global ai_points
+    global player_points
+  
+    print("AI wins.")
+    ai_points = ai_points + 1
+    moves.append(moves_dictionary[player_move])
+    print(f"AI: {ai_points} Player: {player_points}")
+    print("")
+    t.sleep(1.5)
+  
+def player_wins():
+  
+    global ai_points
+    global player_points
+  
+    print("Player wins.")
+    player_points = player_points + 1
+    moves.append(moves_dictionary[player_move])
+    print(f"AI: {ai_points} Player: {player_points}")
+    print("")
+    t.sleep(1.5)
+  
+def tie():
+  
+    global ai_points
+    global player_points
+  
+    print("Tie!")
+    print(f"AI: {ai_points} Player: {player_points}")
+    print("")
+    t.sleep(1.5)
+
+print("Welcome to Rock Paper Scissors!")
+t.sleep(1.5)
+print("")
+
+while ai_points != 3 and player_points != 3:
+   
+    ai_move = rnd.choice(moves)
+    player_move = input("What is your move? (r/p/s) ").lower()
+   
+    if ai_move == "r":
+      
+        if player_move == "s":
+          
+            ai_wins()
+          
+        elif player_move == "p":
+          
+            player_wins()
+          
+        elif player_move == "r":
+          
+            tie()
+          
+        else:
+          
+            print("Pick a valid option.")
+            print("")
+           
+    elif ai_move == "p":
+      
+        if player_move == "s":
+          
+            player_wins()
+          
+        elif player_move == "p":
+          
+            tie()
+          
+        elif player_move == "r":
+          
+            ai_wins()
+          
+        else:
+          
+            print("Pick a valid option.")
+            print("")
+          
+    elif ai_move == "s":
+      
+        if player_move == "s":
+          
+            tie()
+          
+        elif player_move == "p":
+          
+            ai_wins()
+          
+        elif player_move == "r":
+          
+            player_wins()
+          
+        else:
+          
+            print("Pick a valid option.")
+            print("")
+          
+if ai_points > player_points:
+  
+    print("You lost, bad luck.")
+    print(f"Final score, AI: {ai_points} Player: {player_points}")
+    exit
+   
+elif ai_points < player_points:
+  
+    print("You won, congrats.")
+    print(f"Final score, AI: {ai_points} Player: {player_points}")
+    exit
+   
+else:
+  
+    print("Somehow you tied. You broke my game, Happy?..")
+    print(f"Final score, AI: {ai_points} Player: {player_points}")
+    exit
+
+t.sleep(1.5)
+print("Thank you for playing!")
